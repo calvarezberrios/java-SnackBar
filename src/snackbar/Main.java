@@ -1,9 +1,13 @@
 package snackbar;
 
+import java.text.DecimalFormat;
+
 public class Main
 {
     public static void main(String args[])
     {
+        DecimalFormat df = new DecimalFormat("$#,##0.00");
+
         Customer jane = new Customer("Jane", 45.25);
         Customer bob = new Customer("Bob", 33.14);
 
@@ -17,23 +21,154 @@ public class Main
         Snack soda = new Snack("Soda", 24, 2.50, drink);
         Snack water = new Snack("Water", 20, 2.75, drink);
 
-        System.out.println("Customers:");
-        System.out.println(jane.getId() + " - " + jane.getName() + " - " + jane.getCash_On_Hand());
-        System.out.println(bob.getId() + " - " + bob.getName() + " - " + bob.getCash_On_Hand());
+        if(soda.getQuantity() >= 3 && jane.getCash_On_Hand() >= soda.getTotal(3))
+        {
+            jane.buySnacks(soda.getTotal(3));
+            soda.buySnack(3);
+            System.out.println("Customer " + jane.getId() + " cash on hand " + df.format(jane.getCash_On_Hand()));
+            System.out.println("Quantity of snack " + soda.getId() + " is " + soda.getQuantity());
+        }
+        else if(soda.getQuantity() < 3)
+        {
+            System.out.println("There is " + soda.getQuantity() + " in stock.");
+        }
+        else
+        {
+            System.out.println("Jane does not have enough cash on hand. Cash on Hand: " + df.format(jane.getCash_On_Hand()));
+        }
         System.out.println();
 
-        System.out.println("Vending Machines:");
-        System.out.println(food.getId() + " - " + food.getName());
-        System.out.println(drink.getId() + " - " + drink.getName());
-        System.out.println(office.getId() + " - " + office.getName());
+        System.out.println();
+        if(pretzel.getQuantity() >= 1 && jane.getCash_On_Hand() >= pretzel.getTotal(1))
+        {
+            jane.buySnacks(pretzel.getTotal(1));
+            pretzel.buySnack(1);
+            System.out.println("Customer " + jane.getId() + " cash on hand " + df.format(jane.getCash_On_Hand()));
+            System.out.println("Quantity of snack " + pretzel.getId() + " is " + pretzel.getQuantity());
+        }
+        else if(pretzel.getQuantity() < 1)
+        {
+            System.out.println("There is " + pretzel.getQuantity() + " in stock.");
+        }
+        else
+        {
+            System.out.println("Jane does not have enough cash on hand. Cash on Hand: " + df.format(jane.getCash_On_Hand()));
+        }
         System.out.println();
 
-        System.out.println("Vending Machines:");
-        System.out.println(chips.getId() + " - " + chips.getName() + " - " + chips.getQuantity() + " - " + chips.getCost() + " - " + chips.getVending_Machine_Id());
-        System.out.println(chocolate_bar.getId() + " - " + chocolate_bar.getName() + " - " + chocolate_bar.getQuantity() + " - " + chocolate_bar.getCost() + " - " + chocolate_bar.getVending_Machine_Id());
-        System.out.println(pretzel.getId() + " - " + pretzel.getName() + " - " + pretzel.getQuantity() + " - " + pretzel.getCost() + " - " + pretzel.getVending_Machine_Id());
-        System.out.println(soda.getId() + " - " + soda.getName() + " - " + soda.getQuantity() + " - " + soda.getCost() + " - " + soda.getVending_Machine_Id());
-        System.out.println(water.getId() + " - " + water.getName() + " - " + water.getQuantity() + " - " + water.getCost() + " - " + water.getVending_Machine_Id());
+        System.out.println();
+        if(soda.getQuantity() >= 2 && bob.getCash_On_Hand() >= soda.getTotal(2))
+        {
+            bob.buySnacks(soda.getTotal(2));
+            soda.buySnack(2);
+            System.out.println("Customer " + bob.getId() + " cash on hand " + df.format(bob.getCash_On_Hand()));
+            System.out.println("Quantity of snack " + soda.getId() + " is " + soda.getQuantity());
+        }
+        else if(soda.getQuantity() < 2)
+        {
+            System.out.println("There is " + soda.getQuantity() + " in stock.");
+        }
+        else
+        {
+            System.out.println("Bob does not have enough cash on hand. Cash on Hand: " + df.format(bob.getCash_On_Hand()));
+        }
+        System.out.println();
+
+        System.out.println();
+        jane.addCash(10.00);
+        System.out.println("Customer " + jane.getId() + " cash on hand " + df.format(jane.getCash_On_Hand()));
+        System.out.println();
+
+        System.out.println();
+        if(chocolate_bar.getQuantity() >= 1 && jane.getCash_On_Hand() >= chocolate_bar.getTotal(1))
+        {
+            jane.buySnacks(chocolate_bar.getTotal(1));
+            chocolate_bar.buySnack(1);
+            System.out.println("Customer " + jane.getId() + " cash on hand " + df.format(jane.getCash_On_Hand()));
+            System.out.println("Quantity of snack " + chocolate_bar.getId() + " is " + chocolate_bar.getQuantity());
+        }
+        else if(chocolate_bar.getQuantity() < 1)
+        {
+            System.out.println("There is " + chocolate_bar.getQuantity() + " in stock.");
+        }
+        else
+        {
+            System.out.println("Jane does not have enough cash on hand. Cash on Hand: " + df.format(jane.getCash_On_Hand()));
+        }
+        System.out.println();
+
+        System.out.println();
+        pretzel.addSnacks(12);
+        System.out.println("Quantity of snack " + pretzel.getId() + " is " + pretzel.getQuantity());
+        System.out.println();
+
+        System.out.println();
+        if(pretzel.getQuantity() >= 3 && bob.getCash_On_Hand() >= pretzel.getTotal(3))
+        {
+            bob.buySnacks(pretzel.getTotal(3));
+            pretzel.buySnack(3);
+            System.out.println("Customer " + bob.getId() + " cash on hand " + df.format(bob.getCash_On_Hand()));
+            System.out.println("Quantity of snack " + pretzel.getId() + " is " + pretzel.getQuantity());
+        }
+        else if(pretzel.getQuantity() < 3)
+        {
+            System.out.println("There is " + pretzel.getQuantity() + " in stock.");
+        }
+        else
+        {
+            System.out.println("Bob does not have enough cash on hand. Cash on Hand: " + df.format(bob.getCash_On_Hand()));
+        }
+        System.out.println();
+
+        System.out.println();
+        System.out.println("Stretch Goals");
+        System.out.println();
+
+        System.out.println();
+        System.out.println(
+            "Snack: " + chips.getName() + "\n" +
+            "Vending Machine: " + food.getName() + "\n" +
+            "Quantity: " + chips.getQuantity() + "\n" +
+            "Total Cost: " + df.format(chips.getTotal(chips.getQuantity()))
+        );
+        System.out.println();
+
+        System.out.println();
+        System.out.println(
+            "Snack: " + chocolate_bar.getName() + "\n" +
+            "Vending Machine: " + food.getName() + "\n" +
+            "Quantity: " + chocolate_bar.getQuantity() + "\n" +
+            "Total Cost: " + df.format(chocolate_bar.getTotal(chocolate_bar.getQuantity()))
+        );
+        System.out.println();
+
+        System.out.println();
+        System.out.println(
+            "Snack: " + pretzel.getName() + "\n" +
+            "Vending Machine: " + food.getName() + "\n" +
+            "Quantity: " + pretzel.getQuantity() + "\n" +
+            "Total Cost: " + df.format(pretzel.getTotal(pretzel.getQuantity()))
+        );
+        System.out.println();
+
+        System.out.println();
+        System.out.println(
+            "Snack: " + soda.getName() + "\n" +
+            "Vending Machine: " + drink.getName() + "\n" +
+            "Quantity: " + soda.getQuantity() + "\n" +
+            "Total Cost: " + df.format(soda.getTotal(soda.getQuantity()))
+        );
+        System.out.println();
+
+        System.out.println();
+        System.out.println(
+            "Snack: " + water.getName() + "\n" +
+            "Vending Machine: " + drink.getName() + "\n" +
+            "Quantity: " + water.getQuantity() + "\n" +
+            "Total Cost: " + df.format(water.getTotal(water.getQuantity()))
+        );
+        System.out.println();
+
 
     }
 }
